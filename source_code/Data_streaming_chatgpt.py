@@ -2,47 +2,42 @@ import os
 from google.cloud import bigquery
 from google.cloud import pubsub_v1
 
-# Replace with your project ID, Pub/Sub subscription name, and BigQuery dataset and table names
-project_id = 'your-project-id'
-subscription_name = 'your-subscription-name'
-dataset_id = 'your-dataset-id'
-table_id = 'your-table-id'
+# Create dataset and table (
+# ==================================== 
+# from google.cloud import bigquery
 
-# ====================================
-from google.cloud import bigquery
-
-# Set your project ID and dataset ID
-project_id = 'your-project-id'
-dataset_id = 'your-dataset-id'
+# # Set your project ID and dataset ID
+# project_id = 'your-project-id'
+# dataset_id = 'your-dataset-id'
 
 
-# Initialize the BigQuery client
-client = bigquery.Client(project=project_id)
+# # Initialize the BigQuery client
+# client = bigquery.Client(project=project_id)
 
-# Define the dataset ID and other optional settings
-dataset_id = 'your-dataset-id'
-dataset = bigquery.Dataset(f"{project_id}.{dataset_id}")
+# # Define the dataset ID and other optional settings
+# dataset_id = 'your-dataset-id'
+# dataset = bigquery.Dataset(f"{project_id}.{dataset_id}")
 
-# Create the dataset
-dataset = client.create_dataset(dataset, exists_ok=True)
+# # Create the dataset
+# dataset = client.create_dataset(dataset, exists_ok=True)
 
-print(f"Dataset {dataset.dataset_id} created.")
+# print(f"Dataset {dataset.dataset_id} created.")
 
-# Define the table ID and its schema
-table_id = 'your-table-id'
-schema = [
-    bigquery.SchemaField('field1', 'STRING'),
-    bigquery.SchemaField('field2', 'INTEGER'),
-    # Add more fields as needed
-]
+# # Define the table ID and its schema
+# table_id = 'your-table-id'
+# schema = [
+#     bigquery.SchemaField('field1', 'STRING'),
+#     bigquery.SchemaField('field2', 'INTEGER'),
+#     # Add more fields as needed
+# ]
 
-# Define the table
-table = bigquery.Table(f"{project_id}.{dataset_id}.{table_id}", schema=schema)
+# # Define the table
+# table = bigquery.Table(f"{project_id}.{dataset_id}.{table_id}", schema=schema)
 
-# Create the table
-table = client.create_table(table)
+# # Create the table
+# table = client.create_table(table)
 
-print(f"Table {table.table_id} created.")
+# print(f"Table {table.table_id} created.")
 # ====================================
 
 # Set up the BigQuery client

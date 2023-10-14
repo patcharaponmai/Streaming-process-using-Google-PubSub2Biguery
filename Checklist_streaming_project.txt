@@ -60,6 +60,6 @@ Checklist streaming project
 
 Step
 ###################################
-1. Generate data  >> Almost done
-2. Streaming >> Not start
+1. Generate data  >> Almost done (Waiting test publish data)
+2. Streaming >> In progress (Build function stream_to_bigquery)
 3. Validate >> Not start

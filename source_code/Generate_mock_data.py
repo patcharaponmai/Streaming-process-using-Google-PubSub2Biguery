@@ -5,9 +5,10 @@ import random
 import configparser
 import time
 import uuid
+from dotenv import load_dotenv
 from datetime import datetime
 from faker import Faker
-from google.cloud import pubsub
+from google.cloud import pubsub_v1
 
 def get_event_id():
     unique_id = uuid.uuid4()
@@ -51,6 +52,9 @@ def get_eventtime():
 
 if __name__ == '__main__':
 
+    # Load environment
+    load_dotenv()
+
     # Initialize the configuration parser
     config = configparser.ConfigParser()
 
@@ -60,7 +64,6 @@ if __name__ == '__main__':
     try:
         project_id = config.get('PROJ_CONF', 'PROJ_ID')
         pubsub_topic = config.get('PROJ_CONF', 'PUBSUB_TOPIC_NAME')
-        key_file_path = config.get('GC_credential', 'KEY_PATH')
 
     except Exception as e:
         print("Error: Cannot get a require parameters.")
@@ -68,10 +71,8 @@ if __name__ == '__main__':
         sys.exit(1)
     
     topic_name = f"projects/{project_id}/topics/{pubsub_topic}"
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_file_path
 
-    print(topic_name)
-    print(os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"))
+    # print(topic_name)
 
     print("======================================")
     print("====== Start Generate Mock Data ======")
@@ -80,7 +81,7 @@ if __name__ == '__main__':
 
     # Initialize Pub/Sub client
     try:
-        publisher = pubsub.PublisherClient()
+        publisher = pubsub_v1.PublisherClient()
     except Exception as e:
         print(f"Error: Cannot create connection with Pub/Sub client")
         print(e)
@@ -114,7 +115,7 @@ if __name__ == '__main__':
             print(json.dumps(event))
             number+=1
             
-            # Publish the mock data to the Pub/Sub topic
+            # # Publish the mock data to the Pub/Sub topic
             try:
                 publisher.publish(topic_name, json.dumps(event).encode('utf-8'))
             except Exception as e:
