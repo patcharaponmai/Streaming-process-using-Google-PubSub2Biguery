@@ -1,0 +1,65 @@
+Checklist streaming project
+1. Source >> auto generate by python script
+2. Source DB >> PostgreSQL
+3. Streaming process >> Google Cloud Pub/Sub
+================================================================================
+	- Apache Beam:
+	
+		Use when:
+		- You need to build complex data transformation and processing pipelines.
+		- Portability across multiple execution engines is a key requirement.
+		- You have a mix of batch and stream processing needs.
+		
+		Not use >> Need learning curve. Not suit to person who start streaming
+		
+	- Apache Kafka: 
+	
+		Use when:
+		- You primarily need a distributed, highly scalable message broker for real-time event streaming.
+		- Data ingestion and low-latency processing are the primary use cases.
+		- You have a dedicated team for infrastructure management and are willing to manage a Kafka cluster.
+		
+		Not use >> Need learning curve. Not suit to person who start streaming
+		
+	- Airbyte
+	
+		Not use >> Need learning curve and require additional configuration and setup
+		
+	- Google streaming:
+	
+		- Google Cloud Dataflow:
+		
+			Not use >> Require additional configuration which might take more time
+			
+		- Google Cloud Pub/Sub:
+		
+			Selected >> Fully managed, integrated services that work seamlessly together, which can simplify the setup and management of your data streaming pipeline.
+================================================================================
+
+# Step
+# ###################################
+# Prerequistes
+# - Google Cloud project with the necessary APIs enabled.
+# - Docker and Docker Compose installed.
+# - Authentication credentials for Google Cloud set up.
+# - Python with the google-cloud-pubsub, google-cloud-bigquery, and psycopg2 libraries installed.
+# 
+# Installation and Execution:
+# - Ensure that Docker, Docker Compose, and Python are installed in your environment.
+# - Set up a Google Cloud project and enable the necessary APIs.
+# - Configure authentication credentials for your Google Cloud project.
+# - Create a PostgreSQL database or use an existing one.
+# - Place the docker-compose.yml and stream_to_bigquery.py files in the same directory.
+# - Build and start the Docker containers using:
+# 
+# 	docker-compose up -d
+# 
+# - Access the Jupyter Notebook interface at http://localhost:8888 in your web browser.
+# - Create a new Jupyter Notebook or Python script to run the stream_to_bigquery.py code.
+# ###################################
+
+Step
+###################################
+1. Generate data  >> Almost done
+2. Streaming >> Not start
+3. Validate >> Not start

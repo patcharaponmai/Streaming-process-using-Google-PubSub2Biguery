@@ -1,0 +1,29 @@
+import json
+import time
+from faker import Faker
+from google.cloud import pubsub
+
+# Replace with your project ID and Pub/Sub topic name
+project_id = 'YOUR_PROJECT_ID'
+topic_name = 'projects/{}/topics/YOUR_PUBSUB_TOPIC'.format(project_id)
+
+# Initialize Pub/Sub client
+publisher = pubsub.PublisherClient()
+
+# Initialize the Faker library for generating mock data
+fake = Faker()
+
+# Generate and publish mock data to Pub/Sub
+for _ in range(10):  # Replace with the desired number of messages
+    mock_data = {
+        'name': fake.name(),
+        'email': fake.email(),
+        'address': fake.address(),
+    }
+    
+    # Publish the mock data to the Pub/Sub topic
+    publisher.publish(topic_name, json.dumps(mock_data).encode('utf-8'))
+
+    time.sleep(1)  # Add a delay for demonstration purposes
+
+print("Mock data published to Pub/Sub.")

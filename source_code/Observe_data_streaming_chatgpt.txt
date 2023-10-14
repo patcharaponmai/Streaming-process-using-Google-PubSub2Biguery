@@ -1,0 +1,20 @@
+from google.cloud import bigquery
+
+# Replace with your project ID, dataset, and table names
+project_id = 'YOUR_PROJECT_ID'
+dataset_id = 'your-dataset'
+table_id = 'your-table'
+
+# Initialize the BigQuery client
+client = bigquery.Client(project=project_id)
+
+# Define your SQL query to retrieve data
+sql_query = f"SELECT * FROM `{project_id}.{dataset_id}.{table_id}` LIMIT 10"
+
+# Execute the query and retrieve the results
+query_job = client.query(sql_query)
+results = query_job.result()
+
+# Iterate through the results and observe the data
+for row in results:
+    print(row)
